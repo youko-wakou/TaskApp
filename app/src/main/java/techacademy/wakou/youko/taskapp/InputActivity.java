@@ -141,7 +141,7 @@ public class InputActivity extends AppCompatActivity {
 
         mTask.setTitle(title);
         mTask.setContents(content);
-        mTask.setContents(category);
+        mTask.setCategory(category);
         GregorianCalendar calendar = new GregorianCalendar(mYear,mMonth,mDay,mHour,mMinute);
         Date date = calendar.getTime();
         mTask.setDate(date);
