@@ -66,4 +66,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="117dp"
         android:text="決定" />
+
+
 </RelativeLayout>
