@@ -101,7 +101,7 @@ public class InputActivity extends AppCompatActivity {
             mHour = calendar.get(Calendar.HOUR_OF_DAY);
             mMinute = calendar.get(Calendar.MINUTE);
         }else{
-            mCategory.setText(mTask.getContents());
+            mCategory.setText(mTask.getCategory());
             mTitleEdit.setText(mTask.getTitle());
             mContentEdit.setText(mTask.getContents());
 
