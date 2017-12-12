@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     };
     private ListView mListView;
     private TaskAdapter mTaskAdapter;
-
+    private SearchView search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        search = (SearchView)findViewById(R.id.searchView1);
+        search.setIconifiedByDefault(false);
+        search.setOnQueryChangeListener(this);
+        search.setSubmitButtonEnable(true);
+        search.setQueryHint("検索文字を入力してください");
+
+
 
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -100,6 +109,20 @@ public class MainActivity extends AppCompatActivity {
         });
         reloadListView();
 
+    }
+
+    @Override
+    public boolean onQueryTextChanged(String queryText){
+        if(TextUtils.isEmpty(queryText)){
+            mListView.clearTextFilter();
+        }else{
+            mListView.setFilterText(queryText.toString());
+        }
+        return true;
+    }
+    @Override
+    public boolean OnSubmitQuery(String queryText){
+        return true;
     }
 
     private void reloadListView() {
