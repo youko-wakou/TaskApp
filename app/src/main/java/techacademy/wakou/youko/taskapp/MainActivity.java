@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.support.v7.widget.SearchView;
+import android.widget.SearchView;
 
 
 
