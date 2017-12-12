@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         reloadListView();
 
     }
-    public setOnQueryTextListener(self.OnQueryTextListener){
+    public void setOnQueryTextListener(new SearchView.OnQueryTextListener(){
         if(!this.searchWord.equals("")){
 //        空文字でない場合
             this.search.setQuery(this.searchWord,false);
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 //        空文字だった場合
             this.search.setQueryHint("検索文字を入力してください");
         }
-    }
+    });
 
 
 
