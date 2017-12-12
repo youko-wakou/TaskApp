@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private TaskAdapter mTaskAdapter;
     private SearchView search;
+    private String searchWord;
+    private final MainActivity self = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +49,10 @@ public class MainActivity extends AppCompatActivity {
                startActivity(intent);
             }
         });
-        search = (SearchView)findViewById(R.id.searchView1);
-        search.setIconifiedByDefault(false);
+        this.search = (SearchView)findViewById(R.id.searchView1);
+        this.search.setIconifiedByDefault(false);
 //            search.setOnQueryChangeListener(this);
-//            search.setSubmitButtonEnable(true);
-        search.setQueryHint("検索文字を入力してください");
+        this.search.setSubmitButtonEnabled(false);
 
         mRealm = Realm.getDefaultInstance();
         mRealm.addChangeListener(mRealmListener);
@@ -114,16 +115,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-    public boolean onQueryTextChanged(String queryText){
-        if(TextUtils.isEmpty(queryText)){
-            mListView.clearTextFilter();
-        }else{
-            mListView.setFilterText(queryText.toString());
-        }
-        return true;
+    if(!this.searchWord.equals("")){
+//        空文字でない場合
+        this.search.setQuery(this.searchWord,false);
+    }else{
+//        空文字だった場合
+        this.search.setQueryHint("検索文字を入力してください");
     }
-//    @Override
+    this.search.setOnQueryTextListener(self.onQueryTextListener);
+
+    //    @Override
     public boolean OnSubmitQuery(String queryText){
         return true;
     }
