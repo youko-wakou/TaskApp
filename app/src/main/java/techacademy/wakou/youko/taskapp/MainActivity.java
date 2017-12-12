@@ -65,14 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        SearchView.OnQueryChangeListener{
             search = (SearchView)findViewById(R.id.searchView1);
             search.setIconifiedByDefault(false);
-            search.setOnQueryChangeListener(this);
-            search.setSubmitButtonEnable(true);
+//            search.setOnQueryChangeListener(this);
+//            search.setSubmitButtonEnable(true);
             search.setQueryHint("検索文字を入力してください");
 
-        }
+
 
 
 
@@ -115,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
+//    @Override
     public boolean onQueryTextChanged(String queryText){
         if(TextUtils.isEmpty(queryText)){
             mListView.clearTextFilter();
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-    @Override
+//    @Override
     public boolean OnSubmitQuery(String queryText){
         return true;
     }
