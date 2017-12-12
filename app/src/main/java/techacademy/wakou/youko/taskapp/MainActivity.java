@@ -114,20 +114,17 @@ public class MainActivity extends AppCompatActivity {
         reloadListView();
 
     }
-
-    if(!this.searchWord.equals("")){
+    public setOnQueryTextListener(self.OnQueryTextListener){
+        if(!this.searchWord.equals("")){
 //        空文字でない場合
-        this.search.setQuery(this.searchWord,false);
-    }else{
+            this.search.setQuery(this.searchWord,false);
+        }else{
 //        空文字だった場合
-        this.search.setQueryHint("検索文字を入力してください");
+            this.search.setQueryHint("検索文字を入力してください");
+        }
     }
-    this.search.setOnQueryTextListener(self.onQueryTextListener);
 
-    //    @Override
-    public boolean OnSubmitQuery(String queryText){
-        return true;
-    }
+
 
     private void reloadListView() {
 
