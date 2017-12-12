@@ -12,8 +12,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.support.v7.widget.SearchView;
 
-import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     };
     private ListView mListView;
     private TaskAdapter mTaskAdapter;
+    private SearchView search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         SearchView.OnQueryChangeListener{
-            private SearchView search;
             search = (SearchView)findViewById(R.id.searchView1);
             search.setIconifiedByDefault(false);
             search.setOnQueryChangeListener(this);
