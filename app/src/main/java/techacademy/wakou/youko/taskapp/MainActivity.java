@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     };
     private ListView mListView;
     private TaskAdapter mTaskAdapter;
-    private SearchView search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +62,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        SearchView.OnQueryChangeListener{
+            private SearchView search;
+            search = (SearchView)findViewById(R.id.searchView1);
+            search.setIconifiedByDefault(false);
+            search.setOnQueryChangeListener(this);
+            search.setSubmitButtonEnable(true);
+            search.setQueryHint("検索文字を入力してください");
 
-        search = (SearchView)findViewById(R.id.searchView1);
-        search.setIconifiedByDefault(false);
-        search.setOnQueryChangeListener(this);
-        search.setSubmitButtonEnable(true);
-        search.setQueryHint("検索文字を入力してください");
+        }
 
 
 
