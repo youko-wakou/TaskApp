@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
                startActivity(intent);
             }
         });
+        search = (SearchView)findViewById(R.id.searchView1);
+        search.setIconifiedByDefault(false);
+//            search.setOnQueryChangeListener(this);
+//            search.setSubmitButtonEnable(true);
+        search.setQueryHint("検索文字を入力してください");
 
         mRealm = Realm.getDefaultInstance();
         mRealm.addChangeListener(mRealmListener);
@@ -65,11 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-            search = (SearchView)findViewById(R.id.searchView1);
-            search.setIconifiedByDefault(false);
-//            search.setOnQueryChangeListener(this);
-//            search.setSubmitButtonEnable(true);
-            search.setQueryHint("検索文字を入力してください");
 
 
 
