@@ -134,13 +134,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
 //        文字を入力すると呼び出される
         public boolean onQueryTextChange(String queryText) {
-            if(TextUtils.isEmpty(queryText)){
+            String query = search.getSuggestionsAdapter().toString();
+            if(TextUtils.isEmpty(query)){
                 mListView.clearTextFilter();
                 Log.d("test","でーたがにゅうりょくされていません");
             }else{
 //                リストビューに検索欄に入力した文字でフィルタリングする。
-                mListView.setFilterText(queryText.toString());
-                String my = queryText.toString();
+                mListView.setFilterText(query.toString());
+                String my = query.toString();
                 Log.d("test",my);
             }
             return true;
