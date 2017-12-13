@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
 //        文字を入力すると呼び出される
         public boolean onQueryTextChange(String queryText) {
             String query = search.getSuggestionsAdapter().toString();
+            Log.d("test",query);
             if(TextUtils.isEmpty(query)){
                 mListView.clearTextFilter();
                 Log.d("test","でーたがにゅうりょくされていません");
