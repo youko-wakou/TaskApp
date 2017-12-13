@@ -126,16 +126,22 @@ public class MainActivity extends AppCompatActivity {
     SearchView.OnQueryTextListener searchListener = new SearchView.OnQueryTextListener() {
 
         @Override
+//        enterが押されるかsubmitが押されると呼びだされる
         public boolean onQueryTextSubmit(String s) {
             return true;
         }
 
         @Override
+//        文字を入力すると呼び出される
         public boolean onQueryTextChange(String queryText) {
             if(TextUtils.isEmpty(queryText)){
                 mListView.clearTextFilter();
+                Log.d("test","でーたがにゅうりょくされていません");
             }else{
+//                リストビューに検索欄に入力した文字でフィルタリングする。
                 mListView.setFilterText(queryText.toString());
+                String my = queryText.toString();
+                Log.d("test",my);
             }
             return true;
         }
