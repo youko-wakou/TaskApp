@@ -73,11 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+       mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
