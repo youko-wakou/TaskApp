@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -51,15 +52,15 @@ public class MainActivity extends AppCompatActivity {
         });
         this.search = (SearchView)findViewById(R.id.searchView1);
         this.search.setIconifiedByDefault(false);
-//            search.setOnQueryChangeListener(this);
-        this.search.setSubmitButtonEnabled(false);
+        this.search.setSubmitButtonEnabled(true);
+        mListView.setTextFilterEnabled(true);
+        this.search.setQueryHint("検索文字を入力してください");
 
         mRealm = Realm.getDefaultInstance();
         mRealm.addChangeListener(mRealmListener);
 
         mTaskAdapter = new TaskAdapter(MainActivity.this);
         mListView = (ListView) findViewById(R.id.listView1);
-
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -114,17 +115,40 @@ public class MainActivity extends AppCompatActivity {
         reloadListView();
 
     }
-    public void setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-        if(!this.searchWord.equals("")){
-//        空文字でない場合
-            this.search.setQuery(this.searchWord,false);
-        }else{
-//        空文字だった場合
-            this.search.setQueryHint("検索文字を入力してください");
+
+
+//    public void setOnQueryTextListener(SearchView.OnQueryTextListener callress){
+//        if(!this.searchWord.equals("")){
+////        空文字でない場合
+//            this.search.setQuery(this.searchWord,false);
+//        }else{
+////        空文字だった場合
+//            this.search.setQueryHint("検索文字を入力してください");
+//        }
+//    }
+
+    SearchView.OnQueryTextListener searchListener = new SearchView.OnQueryTextListener() {
+
+        @Override
+        public boolean onQueryTextSubmit(String s) {
+            return true;
         }
-    });
 
+        @Override
+        public boolean onQueryTextChange(String queryText) {
+            if(TextUtils.isEmpty(queryText)){
+                mListView.clearTextFilter();
+            }else{
+                mListView.setFilterText(queryText.toString());
+            }
+            return true;
+        }
 
+//           @Override
+           public boolean OnSubmitQuery(String s){
+               return false;
+           }
+    };
 
     private void reloadListView() {
 
