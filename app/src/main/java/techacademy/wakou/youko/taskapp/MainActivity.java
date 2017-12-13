@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         this.search.setIconifiedByDefault(false);
         this.search.setSubmitButtonEnabled(true);
         this.search.setQueryHint("検索文字を入力してください");
-        this.search.setOnQueryTextListener(self.searchListener);
+        this.search.setOnQueryTextListener(searchListener);
         mRealm = Realm.getDefaultInstance();
         mRealm.addChangeListener(mRealmListener);
 
