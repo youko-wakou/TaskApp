@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         this.search = (SearchView)findViewById(R.id.searchView1);
         this.search.setIconifiedByDefault(false);
         this.search.setSubmitButtonEnabled(true);
-        mListView.setTextFilterEnabled(true);
         this.search.setQueryHint("検索文字を入力してください");
 
         mRealm = Realm.getDefaultInstance();
@@ -61,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         mTaskAdapter = new TaskAdapter(MainActivity.this);
         mListView = (ListView) findViewById(R.id.listView1);
+        mListView.setTextFilterEnabled(true);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
