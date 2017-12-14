@@ -136,19 +136,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
 //        文字を入力すると呼び出される
         public boolean onQueryTextChange(String queryText) {
-//            String query = search.getSuggestionsAdapter().toString();
-            String query = queryText;
-            Log.d("test",query);
-            if(TextUtils.isEmpty(query)){
-                mListView.clearTextFilter();
-                Log.d("test","でーたがにゅうりょくされていません");
-            }else{
-//                リストビューに検索欄に入力した文字でフィルタリングする。
-                mListView.setFilterText(query.toString());
-                String my = query.toString();
-                Log.d("test",my);
                 reloadListView();
-            }
             return true;
         }
 
@@ -159,15 +147,28 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void reloadListView() {
-        String word = search.getQuery().toString();
-        RealmResults<Task> taskRealmResults = mRealm.where(Task.class).contains("category",word).findAllSorted("date", Sort.DESCENDING);
+//        SearchViewに入力された文字を取得する
+        String word = this.search.getQuery().toString();
+//        wordが０文字だったら
+        if(word.length()== 0){
+            RealmResults<Task> taskRealmResults = mRealm.where(Task.class).findAllSorted("date", Sort.DESCENDING);
+            mTaskAdapter.setTaskList(mRealm.copyFromRealm(taskRealmResults));
 
-        mTaskAdapter.setTaskList(mRealm.copyFromRealm(taskRealmResults));
+            mListView.setAdapter(mTaskAdapter);
 
-        mListView.setAdapter(mTaskAdapter);
+            mTaskAdapter.notifyDataSetChanged();
+//            wordに入力があったら
+        }else{
+            RealmResults<Task> taskRealmResults = mRealm.where(Task.class).contains("category",word).findAllSorted("date", Sort.DESCENDING);
+            mTaskAdapter.setTaskList(mRealm.copyFromRealm(taskRealmResults));
 
-        mTaskAdapter.notifyDataSetChanged();
-    }
+            mListView.setAdapter(mTaskAdapter);
+
+            mTaskAdapter.notifyDataSetChanged();
+
+        }
+
+           }
 
     @Override
     protected void onDestroy() {
