@@ -134,7 +134,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
 //        文字を入力すると呼び出される
         public boolean onQueryTextChange(String queryText) {
-            String query = search.getSuggestionsAdapter().toString();
+//            String query = search.getSuggestionsAdapter().toString();
+            String query = queryText;
             Log.d("test",query);
             if(TextUtils.isEmpty(query)){
                 mListView.clearTextFilter();
