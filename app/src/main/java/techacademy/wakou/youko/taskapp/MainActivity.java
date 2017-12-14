@@ -12,6 +12,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 mListView.setFilterText(query.toString());
                 String my = query.toString();
                 Log.d("test",my);
+                reloadListView();
             }
             return true;
         }
@@ -156,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void reloadListView() {
-
-        RealmResults<Task> taskRealmResults = mRealm.where(Task.class).findAllSorted("date", Sort.DESCENDING);
+        String word = search.getQuery().toString();
+        RealmResults<Task> taskRealmResults = mRealm.where(Task.class).contains("category",word).findAllSorted("date", Sort.DESCENDING);
 
         mTaskAdapter.setTaskList(mRealm.copyFromRealm(taskRealmResults));
 
